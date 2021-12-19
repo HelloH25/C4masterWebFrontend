@@ -1,5 +1,5 @@
 import React from "react";
-import { Registration } from "./components/graphql/Mutation";
+import { CrearProyecto, Registration } from "./components/graphql/Mutation";
 import {ConsultarProyectos,  ConsultarUsuarios } from "./components/graphql/Querys";
 
 function App() {
@@ -14,6 +14,9 @@ function App() {
         </div>
         <div>
           <Registration/>
+        </div>
+        <div>
+          <CrearProyecto/>
         </div>
     </div>
   );
