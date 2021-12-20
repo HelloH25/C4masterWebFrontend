@@ -4,6 +4,7 @@ import {
 } from "@apollo/client";
 import React from "react";
 
+
 const USERS = gql`
     query{
         Users{
@@ -23,8 +24,12 @@ const PROYECTOS = gql`
      Proyectos {
          
         facultad
-         lider
-         nombre
+        lider
+        nombre
+        presupuesto
+        aprobado
+        estado 
+
          
      }
     
@@ -37,12 +42,16 @@ const ConsultarProyectos = () => {
 
     if (loading) return <p>loading...</p>
 
-    const dataTable = data.Proyectos.map(({ facultad, nombre, lider }) => (
+    const dataTable = data.Proyectos.map(({ facultad, nombre, lider, presupuesto, aprobado, estado, }) => (
 
         <tr>
             <td>{facultad}</td>
             <td>{nombre}</td>
             <td>{lider}</td>
+            <td>{presupuesto}</td>
+            <td>{estado}</td>
+            <td>{aprobado}</td>
+
         </tr>
 
 
@@ -52,15 +61,21 @@ const ConsultarProyectos = () => {
             <th>Facultad</th>
             <th>Nombre</th>
             <th>Lider</th>
+            <th>presupuesto</th>
+            <th>estado</th>
+            <th>aprobado</th>
+
         </thead>
-        {dataTable}
+        <tbody>
+            {dataTable}
+        </tbody>
     </table>
 }
 
 const ConsultarUsuarios = () => {
     const { loading, error, data } = useQuery(USERS);
     if (loading) return <p>loading...</p>
-    const dataTable = data.Users.map(({ nombre, apellido, correo, identificacion, rol, estado }) => (
+    const dataTable = data.Users.map(({ nombre, apellido, correo, identificacion, rol, estado, _id }) => (
 
         <tr key={correo}>
             <td>{nombre} {apellido}</td>
@@ -68,6 +83,11 @@ const ConsultarUsuarios = () => {
             <td>{identificacion}</td>
             <td>{rol}</td>
             <td>{estado}</td>
+            <td>{_id}</td>
+            <td>
+                <button>posible autorizacion</button>
+            </td>
+
 
         </tr>
 
@@ -80,7 +100,10 @@ const ConsultarUsuarios = () => {
             <th>Rol</th>
             <th>Estado</th>
         </thead>
-        {dataTable}
+        <tbody>
+            {dataTable}
+        </tbody>
+
     </table>
 }
 
