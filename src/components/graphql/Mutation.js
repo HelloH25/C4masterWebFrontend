@@ -6,6 +6,26 @@ mutation CreateUser($nom:String, $cor:String!, $iden:String, $rol:String, $estad
     createUser(input:{nombre:$nom, apellido:$apellido, correo:$cor, identificacion:$iden, rol:$rol, estado:$estado }) 
   }
 `   
+const CREAR_PROYECTO = gql`
+mutation CreateProject($nom:String, $facu:String, $lid:String) {
+    createProject(project:{nombre:$nom, facultad:$facu, lider:$lid})
+}
+`
+const AUTORIZARUSUARIOS = gql`
+mutation approveUser($id: String) {
+    approveUser(_id: $id)
+  }
+`
+const UNIONPOYECTO = gql`
+mutation SolUsuario($id: String, $nombre: String) {
+    solUsuario(_id: $id, nombre: $nombre)
+  }
+`
+const APROBARUNIONPOYECTO = gql`
+mutation RegUsuario($id: String, $nombre: String) {
+    regUsuario(_id: $id, nombre: $nombre)
+  }
+`
 
 const Registration = () =>{
     
