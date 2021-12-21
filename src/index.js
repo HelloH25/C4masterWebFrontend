@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import apollo from './apolloGraphql'
 import { ApolloProvider } from '@apollo/client';
+import { BrowserRouter } from 'react-router-dom';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={apollo}>
-      <App />
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={apollo}>
+        <App />
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
